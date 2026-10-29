@@ -14,33 +14,33 @@
             box-sizing: border-box;
             font-family: 'Plus Jakarta Sans', sans-serif;
             scroll-behavior: smooth;
-            transition: background-color 0.4s ease, color 0.4s ease, border-color 0.4s ease;
+            transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
         }
 
-        /* TEMA DEFAULT: HIJAU EMERALD */
-        :root[data-theme="green"] {
+        /* TEMA HIJAU EMERALD (DEFAULT) */
+        :root[data-theme="green"], :root {
             --bg-color: #022c22;
-            --card-bg: rgba(6, 78, 59, 0.45);
+            --card-bg: rgba(6, 78, 59, 0.5);
             --text-color: #ecfdf5;
             --text-secondary: #a7f3d0;
             --accent-color: #34d399;
             --accent-hover: #10b981;
             --border-color: #134e4a;
-            --glow-color: rgba(52, 211, 153, 0.6);
-            --line-bg: rgba(52, 211, 153, 0.2);
+            --glow-color: #34d399;
+            --hero-glow: rgba(52, 211, 153, 0.2);
         }
 
-        /* TEMA MODAL: GELAP MIDNIGHT */
+        /* TEMA GELAP MIDNIGHT */
         :root[data-theme="dark"] {
-            --bg-color: #0b0f19;
-            --card-bg: rgba(30, 41, 59, 0.5);
+            --bg-color: #0f172a;
+            --card-bg: rgba(30, 41, 59, 0.6);
             --text-color: #f8fafc;
             --text-secondary: #94a3b8;
             --accent-color: #38bdf8;
             --accent-hover: #0284c7;
-            --border-color: #1e293b;
-            --glow-color: rgba(56, 189, 248, 0.6);
-            --line-bg: rgba(56, 189, 248, 0.2);
+            --border-color: #334155;
+            --glow-color: #38bdf8;
+            --hero-glow: rgba(56, 189, 248, 0.2);
         }
 
         body {
@@ -54,7 +54,7 @@
             position: fixed;
             top: 0;
             width: 100%;
-            background: rgba(2, 44, 34, 0.85);
+            background: rgba(2, 44, 34, 0.9);
             backdrop-filter: blur(12px);
             border-bottom: 1px solid var(--border-color);
             z-index: 1000;
@@ -65,7 +65,7 @@
         }
 
         :root[data-theme="dark"] nav {
-            background: rgba(11, 15, 25, 0.85);
+            background: rgba(15, 23, 42, 0.9);
         }
 
         .logo {
@@ -78,7 +78,7 @@
         .nav-right {
             display: flex;
             align-items: center;
-            gap: 2rem;
+            gap: 1.5rem;
         }
 
         .nav-links {
@@ -92,7 +92,7 @@
             text-decoration: none;
             font-weight: 500;
             font-size: 0.95rem;
-            transition: all 0.3s;
+            transition: color 0.3s;
         }
 
         .nav-links a:hover {
@@ -101,10 +101,10 @@
 
         /* TOMBOL SWITCH TEMA */
         .theme-toggle-btn {
-            background: rgba(255, 255, 255, 0.08);
-            border: 1px solid var(--border-color);
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid var(--accent-color);
             color: var(--text-color);
-            padding: 0.5rem 0.9rem;
+            padding: 0.5rem 1rem;
             border-radius: 20px;
             cursor: pointer;
             display: flex;
@@ -112,11 +112,13 @@
             gap: 0.5rem;
             font-size: 0.85rem;
             font-weight: 600;
+            transition: all 0.3s ease;
         }
 
         .theme-toggle-btn:hover {
-            border-color: var(--accent-color);
-            color: var(--accent-color);
+            background: var(--accent-color);
+            color: #022c22;
+            box-shadow: 0 0 12px var(--glow-color);
         }
 
         /* HERO SECTION */
@@ -128,7 +130,7 @@
             align-items: center;
             text-align: center;
             padding: 7rem 5% 4rem;
-            background: radial-gradient(circle at 50% 30%, var(--line-bg) 0%, transparent 60%);
+            background: radial-gradient(circle at 50% 30%, var(--hero-glow) 0%, transparent 60%);
         }
 
         .hero-img-container {
@@ -137,7 +139,7 @@
             margin-bottom: 2rem;
             border-radius: 24px;
             overflow: hidden;
-            border: 2px solid var(--accent-color);
+            border: 3px solid var(--accent-color);
             box-shadow: 0 0 25px var(--glow-color);
             transition: transform 0.4s ease;
         }
@@ -165,14 +167,13 @@
             font-weight: 500;
         }
 
-        /* SECTIONS & HIGHLIGHT LINES */
+        /* SECTIONS & GARIS ANIMASI BERJALAN */
         section {
             padding: 5rem 8%;
             max-width: 1100px;
             margin: 0 auto;
         }
 
-        /* GARIS TITLE BER-HIGHLIGHT / GLOW */
         .section-title {
             font-size: 1.8rem;
             margin-bottom: 2.5rem;
@@ -182,13 +183,32 @@
             gap: 1.2rem;
         }
 
+        /* ANIMASI GARIS BERJALAN (MOVING NEON GLOW) */
         .section-title::after {
             content: '';
             flex: 1;
-            height: 2px;
-            background: linear-gradient(90deg, var(--accent-color) 0%, var(--glow-color) 40%, transparent 100%);
-            box-shadow: 0 0 10px var(--glow-color);
-            border-radius: 2px;
+            height: 3px;
+            border-radius: 3px;
+            background: linear-gradient(
+                90deg, 
+                transparent 0%, 
+                var(--accent-color) 20%, 
+                #ffffff 50%, 
+                var(--accent-color) 80%, 
+                transparent 100%
+            );
+            background-size: 200% 100%;
+            animation: moveGlow 2.5s linear infinite;
+            box-shadow: 0 0 12px var(--glow-color);
+        }
+
+        @keyframes moveGlow {
+            0% {
+                background-position: 200% 0;
+            }
+            100% {
+                background-position: -200% 0;
+            }
         }
 
         .about-grid {
@@ -234,6 +254,7 @@
         .skill-card:hover {
             border-color: var(--accent-color);
             transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
         }
 
         .skill-card i {
@@ -316,7 +337,7 @@
 <body>
 
     <nav>
-        <div class="logo">Melfan J. Zai</div>
+        <a href="#" class="logo" style="text-decoration: none;">Melfan J. Zai</a>
         <div class="nav-right">
             <ul class="nav-links">
                 <li><a href="#about">About</a></li>
@@ -324,7 +345,7 @@
                 <li><a href="#achievements">Achievements</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
-            <!-- TOMBOL GANTI TEMA -->
+            <!-- TOMBOL TEMA -->
             <button class="theme-toggle-btn" id="themeToggleBtn">
                 <i class="fa-solid fa-palette"></i>
                 <span id="themeLabel">Mode Gelap</span>
@@ -426,18 +447,21 @@
 
     <!-- SCRIPT TUKAR TEMA -->
     <script>
-        const btn = document.getElementById('themeToggleBtn');
-        const label = document.getElementById('themeLabel');
-        const html = document.documentElement;
+        document.addEventListener('DOMContentLoaded', function() {
+            const btn = document.getElementById('themeToggleBtn');
+            const label = document.getElementById('themeLabel');
+            const html = document.documentElement;
 
-        btn.addEventListener('click', () => {
-            if (html.getAttribute('data-theme') === 'green') {
-                html.setAttribute('data-theme', 'dark');
-                label.textContent = 'Mode Hijau';
-            } else {
-                html.setAttribute('data-theme', 'green');
-                label.textContent = 'Mode Gelap';
-            }
+            btn.addEventListener('click', function() {
+                const currentTheme = html.getAttribute('data-theme');
+                if (currentTheme === 'dark') {
+                    html.setAttribute('data-theme', 'green');
+                    label.textContent = 'Mode Gelap';
+                } else {
+                    html.setAttribute('data-theme', 'dark');
+                    label.textContent = 'Mode Hijau';
+                }
+            });
         });
     </script>
 
