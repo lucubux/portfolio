@@ -73,7 +73,6 @@
             font-size: 1.2rem;
             color: var(--accent-color);
             letter-spacing: -0.5px;
-            text-decoration: none;
         }
 
         .nav-right {
@@ -100,6 +99,7 @@
             color: var(--accent-color);
         }
 
+        /* TOMBOL SWITCH TEMA */
         .theme-toggle-btn {
             background: rgba(255, 255, 255, 0.1);
             border: 1px solid var(--accent-color);
@@ -167,7 +167,7 @@
             font-weight: 500;
         }
 
-        /* SECTIONS & ANIMASI GARIS HIGHLIGHT BERJALAN */
+        /* SECTIONS & GARIS ANIMASI BERJALAN */
         section {
             padding: 5rem 8%;
             max-width: 1100px;
@@ -183,6 +183,7 @@
             gap: 1.2rem;
         }
 
+        /* ANIMASI GARIS BERJALAN (MOVING NEON GLOW) */
         .section-title::after {
             content: '';
             flex: 1;
@@ -202,8 +203,12 @@
         }
 
         @keyframes moveGlow {
-            0% { background-position: 200% 0; }
-            100% { background-position: -200% 0; }
+            0% {
+                background-position: 200% 0;
+            }
+            100% {
+                background-position: -200% 0;
+            }
         }
 
         .about-grid {
@@ -258,7 +263,6 @@
             margin-bottom: 1rem;
         }
 
-        /* TIMELINE & FOTO ACHIEVEMENT */
         .timeline-item {
             background: var(--card-bg);
             padding: 1.8rem;
@@ -272,27 +276,6 @@
             font-size: 0.85rem;
             font-weight: 600;
             margin-bottom: 0.5rem;
-        }
-
-        .achievement-img-container {
-            margin-top: 1rem;
-            max-width: 100%;
-            max-height: 250px;
-            border-radius: 12px;
-            overflow: hidden;
-            border: 1px solid var(--border-color);
-        }
-
-        .achievement-img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
-            transition: transform 0.3s ease;
-        }
-
-        .achievement-img:hover {
-            transform: scale(1.02);
         }
 
         .contact-box {
@@ -354,7 +337,7 @@
 <body>
 
     <nav>
-        <a href="#" class="logo">Melfan J. Zai</a>
+        <a href="#" class="logo" style="text-decoration: none;">Melfan J. Zai</a>
         <div class="nav-right">
             <ul class="nav-links">
                 <li><a href="#about">About</a></li>
@@ -362,6 +345,7 @@
                 <li><a href="#achievements">Achievements</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
+            <!-- TOMBOL TEMA -->
             <button class="theme-toggle-btn" id="themeToggleBtn">
                 <i class="fa-solid fa-palette"></i>
                 <span id="themeLabel">Mode Gelap</span>
@@ -430,30 +414,17 @@
         </div>
     </section>
 
-    <!-- ACHIEVEMENTS WITH PHOTOS -->
     <section id="achievements">
         <h2 class="section-title">Achievements</h2>
-        
-        <!-- Poin 1: Bendahara -->
         <div class="timeline-item">
             <div class="timeline-date">SMK N 2 Mandrehe Periode 2023/2024 dan 2024/2025</div>
             <h3>Bendahara Organisasi Siswa</h3>
             <p style="color: var(--text-secondary);">Mengelola dan mencatat laporan keuangan kegiatan di sekolah.</p>
-            <div class="achievement-img-container">
-                <!-- Sesuaikan bendahara.png dengan nama file fotomu -->
-                <img src="bendahara.jpg" alt="Dokumentasi Bendahara Organisasi" class="achievement-img">
-            </div>
         </div>
-
-        <!-- Poin 2: Aktif Kegiatan -->
         <div class="timeline-item">
             <div class="timeline-date">Masa Sekolah (SMK N 2 Mandrehe 2023-2026)</div>
             <h3>Aktif di Berbagai Kegiatan & Juara Kelas</h3>
             <p style="color: var(--text-secondary);">Berpartisipasi aktif dalam setiap kegiatan sekolah dan meraih prestasi akademik.</p>
-            <div class="achievement-img-container">
-                <!-- Sesuaikan kegiatan.png dengan nama file fotomu -->
-                <img src="kegiatan.jpg" alt="Dokumentasi Kegiatan Sekolah" class="achievement-img">
-            </div>
         </div>
     </section>
 
@@ -474,6 +445,7 @@
         <p>&copy; 2026 Melfan Jirenthi Zai. All rights reserved.</p>
     </footer>
 
+    <!-- SCRIPT TUKAR TEMA -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const btn = document.getElementById('themeToggleBtn');
