@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="id" data-theme="green">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,16 +14,33 @@
             box-sizing: border-box;
             font-family: 'Plus Jakarta Sans', sans-serif;
             scroll-behavior: smooth;
+            transition: background-color 0.4s ease, color 0.4s ease, border-color 0.4s ease;
         }
 
-        :root {
+        /* TEMA DEFAULT: HIJAU EMERALD */
+        :root[data-theme="green"] {
             --bg-color: #022c22;
-            --card-bg: #064e3b;
+            --card-bg: rgba(6, 78, 59, 0.45);
             --text-color: #ecfdf5;
             --text-secondary: #a7f3d0;
             --accent-color: #34d399;
             --accent-hover: #10b981;
             --border-color: #134e4a;
+            --glow-color: rgba(52, 211, 153, 0.6);
+            --line-bg: rgba(52, 211, 153, 0.2);
+        }
+
+        /* TEMA MODAL: GELAP MIDNIGHT */
+        :root[data-theme="dark"] {
+            --bg-color: #0b0f19;
+            --card-bg: rgba(30, 41, 59, 0.5);
+            --text-color: #f8fafc;
+            --text-secondary: #94a3b8;
+            --accent-color: #38bdf8;
+            --accent-hover: #0284c7;
+            --border-color: #1e293b;
+            --glow-color: rgba(56, 189, 248, 0.6);
+            --line-bg: rgba(56, 189, 248, 0.2);
         }
 
         body {
@@ -32,6 +49,7 @@
             line-height: 1.6;
         }
 
+        /* NAVBAR */
         nav {
             position: fixed;
             top: 0;
@@ -46,11 +64,21 @@
             align-items: center;
         }
 
+        :root[data-theme="dark"] nav {
+            background: rgba(11, 15, 25, 0.85);
+        }
+
         .logo {
             font-weight: 700;
             font-size: 1.2rem;
             color: var(--accent-color);
             letter-spacing: -0.5px;
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
         }
 
         .nav-links {
@@ -71,6 +99,26 @@
             color: var(--accent-color);
         }
 
+        /* TOMBOL SWITCH TEMA */
+        .theme-toggle-btn {
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid var(--border-color);
+            color: var(--text-color);
+            padding: 0.5rem 0.9rem;
+            border-radius: 20px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        .theme-toggle-btn:hover {
+            border-color: var(--accent-color);
+            color: var(--accent-color);
+        }
+
         /* HERO SECTION */
         .hero-section {
             min-height: 100vh;
@@ -80,7 +128,7 @@
             align-items: center;
             text-align: center;
             padding: 7rem 5% 4rem;
-            background: radial-gradient(circle at 50% 30%, rgba(52, 211, 153, 0.12) 0%, transparent 60%);
+            background: radial-gradient(circle at 50% 30%, var(--line-bg) 0%, transparent 60%);
         }
 
         .hero-img-container {
@@ -90,7 +138,7 @@
             border-radius: 24px;
             overflow: hidden;
             border: 2px solid var(--accent-color);
-            box-shadow: 0 20px 40px rgba(52, 211, 153, 0.15);
+            box-shadow: 0 0 25px var(--glow-color);
             transition: transform 0.4s ease;
         }
 
@@ -117,27 +165,30 @@
             font-weight: 500;
         }
 
-        /* SECTIONS */
+        /* SECTIONS & HIGHLIGHT LINES */
         section {
             padding: 5rem 8%;
             max-width: 1100px;
             margin: 0 auto;
         }
 
+        /* GARIS TITLE BER-HIGHLIGHT / GLOW */
         .section-title {
             font-size: 1.8rem;
             margin-bottom: 2.5rem;
             color: var(--accent-color);
             display: flex;
             align-items: center;
-            gap: 1rem;
+            gap: 1.2rem;
         }
 
         .section-title::after {
             content: '';
             flex: 1;
-            height: 1px;
-            background: var(--border-color);
+            height: 2px;
+            background: linear-gradient(90deg, var(--accent-color) 0%, var(--glow-color) 40%, transparent 100%);
+            box-shadow: 0 0 10px var(--glow-color);
+            border-radius: 2px;
         }
 
         .about-grid {
@@ -147,7 +198,7 @@
         }
 
         .card {
-            background: rgba(6, 78, 59, 0.4);
+            background: var(--card-bg);
             backdrop-filter: blur(8px);
             padding: 2rem;
             border-radius: 16px;
@@ -156,13 +207,14 @@
 
         .badge {
             display: inline-block;
-            background: rgba(52, 211, 153, 0.15);
+            background: rgba(255, 255, 255, 0.08);
             color: var(--accent-color);
             padding: 0.4rem 1rem;
             border-radius: 30px;
             font-size: 0.85rem;
             font-weight: 600;
             margin: 1rem 0;
+            border: 1px solid var(--border-color);
         }
 
         .skills-grid {
@@ -172,7 +224,7 @@
         }
 
         .skill-card {
-            background: rgba(6, 78, 59, 0.4);
+            background: var(--card-bg);
             padding: 1.8rem;
             border-radius: 16px;
             border: 1px solid var(--border-color);
@@ -191,7 +243,7 @@
         }
 
         .timeline-item {
-            background: rgba(6, 78, 59, 0.4);
+            background: var(--card-bg);
             padding: 1.8rem;
             border-radius: 16px;
             border: 1px solid var(--border-color);
@@ -206,7 +258,7 @@
         }
 
         .contact-box {
-            background: rgba(6, 78, 59, 0.4);
+            background: var(--card-bg);
             text-align: center;
             padding: 3.5rem 2rem;
             border-radius: 20px;
@@ -239,6 +291,13 @@
             background: var(--accent-color);
             color: #022c22;
             border-color: var(--accent-color);
+            box-shadow: 0 0 15px var(--glow-color);
+        }
+
+        .btn-resume {
+            background: var(--accent-color);
+            color: #022c22;
+            font-weight: 600;
         }
 
         footer {
@@ -258,12 +317,19 @@
 
     <nav>
         <div class="logo">Melfan J. Zai</div>
-        <ul class="nav-links">
-            <li><a href="#about">About</a></li>
-            <li><a href="#skills">Skills</a></li>
-            <li><a href="#achievements">Achievements</a></li>
-            <li><a href="#contact">Contact</a></li>
-        </ul>
+        <div class="nav-right">
+            <ul class="nav-links">
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#achievements">Achievements</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <!-- TOMBOL GANTI TEMA -->
+            <button class="theme-toggle-btn" id="themeToggleBtn">
+                <i class="fa-solid fa-palette"></i>
+                <span id="themeLabel">Mode Gelap</span>
+            </button>
+        </div>
     </nav>
 
     <div class="hero-section">
@@ -331,13 +397,13 @@
         <h2 class="section-title">Achievements</h2>
         <div class="timeline-item">
             <div class="timeline-date">SMK N 2 Mandrehe Periode 2023/2024 dan 2024/2025</div>
-            <h3>Bendahara Organisasi Siswa </h3>
+            <h3>Bendahara Organisasi Siswa</h3>
             <p style="color: var(--text-secondary);">Mengelola dan mencatat laporan keuangan kegiatan di sekolah.</p>
         </div>
         <div class="timeline-item">
             <div class="timeline-date">Masa Sekolah (SMK N 2 Mandrehe 2023-2026)</div>
             <h3>Aktif di Berbagai Kegiatan & Juara Kelas</h3>
-            <p style="color: var(--text-secondary);">Berpartisipasi aktif dalam setiap kegiatan sekolah  dan meraih prestasi akademik.</p>
+            <p style="color: var(--text-secondary);">Berpartisipasi aktif dalam setiap kegiatan sekolah dan meraih prestasi akademik.</p>
         </div>
     </section>
 
@@ -349,8 +415,7 @@
                 <a href="mailto:26050974062@mhs.unesa.ac.id" class="contact-btn"><i class="fa-solid fa-envelope"></i> Email</a>
                 <a href="https://github.com/lucubux" target="_blank" class="contact-btn"><i class="fa-brands fa-github"></i> GitHub</a>
                 <a href="https://instagram.com/mel_jnth" target="_blank" class="contact-btn"><i class="fa-brands fa-instagram"></i> Instagram</a>
-                <a href="CV-Melfan-Jirenthi-Zai.pdf" download class="contact-btn btn-resume"><i class="fa-solid fa-file-arrow-down"></i> Unduh CV / Resume
-</a>
+                <a href="CV-Melfan-Jirenthi-Zai.pdf" download class="contact-btn btn-resume"><i class="fa-solid fa-file-arrow-down"></i> Unduh CV / Resume</a>
             </div>
         </div>
     </section>
@@ -358,6 +423,23 @@
     <footer>
         <p>&copy; 2026 Melfan Jirenthi Zai. All rights reserved.</p>
     </footer>
+
+    <!-- SCRIPT TUKAR TEMA -->
+    <script>
+        const btn = document.getElementById('themeToggleBtn');
+        const label = document.getElementById('themeLabel');
+        const html = document.documentElement;
+
+        btn.addEventListener('click', () => {
+            if (html.getAttribute('data-theme') === 'green') {
+                html.setAttribute('data-theme', 'dark');
+                label.textContent = 'Mode Hijau';
+            } else {
+                html.setAttribute('data-theme', 'green');
+                label.textContent = 'Mode Gelap';
+            }
+        });
+    </script>
 
 </body>
 </html>
